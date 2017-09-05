@@ -11,4 +11,8 @@ package com.github.jofernando.projeto.tcc;
  */
 public class NewClass {
     
+    
+    
+  private String nome;
+    
 }
