@@ -6,6 +6,7 @@
 package com.github.jofernando.projeto.tcc.entidades;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -33,92 +34,92 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinTable(name = "pedidos_itens",
-	    joinColumns = @JoinColumn(name = "pedido_id"),
-	    inverseJoinColumns = @JoinColumn(name = "item_id"))
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private Set<ItemPedido> itens;
 
     public Pedido(String campanha, Cliente cliente, Set<ItemPedido> itens) {
-	this.campanha = campanha;
-	this.cliente = cliente;
-	this.itens = itens;
+        this.campanha = campanha;
+        this.cliente = cliente;
+        this.itens = itens;
     }
 
     public Pedido() {
     }
 
     public int getId() {
-	return id;
+        return id;
     }
 
     public String getCampanha() {
-	return campanha;
+        return campanha;
     }
 
     public void setCampanha(String campanha) {
-	this.campanha = campanha;
+        this.campanha = campanha;
     }
 
     public Cliente getCliente() {
-	return cliente;
+        return cliente;
     }
 
     public void setCliente(Cliente cliente) {
-	this.cliente = cliente;
+        this.cliente = cliente;
     }
 
     public Set<ItemPedido> getItens() {
-	return itens;
+        return itens;
     }
 
     public void setItens(Set<ItemPedido> itens) {
-	this.itens = itens;
+        this.itens = itens;
     }
 
     public void addItens(ItemPedido item) {
-	if (this.itens == null) {
-	    this.itens = new HashSet<>();
-	}
-	itens.add(item);
+        if (this.itens == null) {
+            this.itens = new HashSet<>();
+        }
+        itens.add(item);
     }
 
-    public double calcularPreco() {
-	double preco = 0;
-	if (this.itens != null) {
-	    for (ItemPedido iten : this.itens) {
-		preco += iten.calcularPreco();
-	    }
-	}
-	return preco;
+    public BigDecimal calcularPreco() {
+        BigDecimal valor = new BigDecimal(0);
+        if (this.itens != null) {
+            for (ItemPedido iten : this.itens) {
+                valor.add(iten.calcularPreco());
+            }
+        }
+        return valor;
     }
 
     @Override
     public int hashCode() {
-	int hash = 3;
-	hash = 31 * hash + this.id;
-	return hash;
+        int hash = 3;
+        hash = 31 * hash + this.id;
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj) {
-	    return true;
-	}
-	if (obj == null) {
-	    return false;
-	}
-	if (getClass() != obj.getClass()) {
-	    return false;
-	}
-	final Pedido other = (Pedido) obj;
-	if (this.id != other.id) {
-	    return false;
-	}
-	return true;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	return "Pedido{" + "id=" + id + ", campanha=" + campanha + ", cliente=" + cliente + ", itens=" + itens + '}';
+        return "Pedido{" + "id=" + id + ", campanha=" + campanha + ", cliente=" + cliente + ", itens=" + itens + '}';
     }
 
 }

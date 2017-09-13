@@ -7,33 +7,34 @@ package com.github.jofernando.projeto.tcc.entidades;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Jose Junio
  */
 @Entity
-public class Empresa implements Serializable {
+public class Empresa extends Usuario implements Serializable {
 
-    @Id
-    private int id;
     private String nomeFantasia;
-    private String cnpf;
-    private String username;
-    private String password;
+    private String cnpj;
     private String razaoSocial;
+    @OneToMany
+    private Set<Revendedor> revendedores;
+    @OneToMany
+    private Set<Produto> produtos;
 
     public Empresa() {
     }
 
-    public Empresa(String nomeFantasia, String cnpf, String username, String password, String razaoSocial) {
+    public Empresa(String nomeFantasia, String cnpj, String razaoSocial, Set<Revendedor> revendedores, String username, String password, String nome) {
+        super(username, password, nome);
         this.nomeFantasia = nomeFantasia;
-        this.cnpf = cnpf;
-        this.username = username;
-        this.password = password;
+        this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
+        this.revendedores = revendedores;
     }
 
     public String getNomeFantasia() {
@@ -44,28 +45,12 @@ public class Empresa implements Serializable {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public String getCnpf() {
-        return cnpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCnpf(String cnpf) {
-        this.cnpf = cnpf;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getRazaoSocial() {
@@ -76,15 +61,18 @@ public class Empresa implements Serializable {
         this.razaoSocial = razaoSocial;
     }
 
-    public int getId() {
-        return id;
+    public Set<Revendedor> getRevendedores() {
+        return revendedores;
+    }
+
+    public void setRevendedores(Set<Revendedor> revendedores) {
+        this.revendedores = revendedores;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.cnpf);
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.cnpj);
         return hash;
     }
 
@@ -100,10 +88,7 @@ public class Empresa implements Serializable {
             return false;
         }
         final Empresa other = (Empresa) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.cnpf, other.cnpf)) {
+        if (!Objects.equals(this.cnpj, other.cnpj)) {
             return false;
         }
         return true;
@@ -111,7 +96,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "Empresa{" + "nomeFantasia=" + nomeFantasia + ", cnpf=" + cnpf + ", username=" + username + ", razaoSocial=" + razaoSocial + '}';
+        return "Empresa{" + ", nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", revendedores=" + revendedores + '}';
     }
 
 }

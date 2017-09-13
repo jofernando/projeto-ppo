@@ -6,6 +6,7 @@
 package com.github.jofernando.projeto.tcc.entidades;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,71 +37,71 @@ public class ItemPedido implements Serializable {
     }
 
     public ItemPedido(int quantProduto, Produto produto, Pedido pedido) {
-	this.quantProduto = quantProduto;
-	this.produto = produto;
-	this.pedido = pedido;
+        this.quantProduto = quantProduto;
+        this.produto = produto;
+        this.pedido = pedido;
     }
 
     public int getId() {
-	return id;
+        return id;
     }
 
     public int getQuantProduto() {
-	return quantProduto;
+        return quantProduto;
     }
 
     public void setQuantProduto(int quantProduto) {
-	this.quantProduto = quantProduto;
+        this.quantProduto = quantProduto;
     }
 
     public Produto getProduto() {
-	return produto;
+        return produto;
     }
 
     public void setProduto(Produto produto) {
-	this.produto = produto;
+        this.produto = produto;
     }
 
     public Pedido getPedido() {
-	return pedido;
+        return pedido;
     }
 
     public void setPedido(Pedido pedido) {
-	this.pedido = pedido;
+        this.pedido = pedido;
     }
 
-    public double calcularPreco() {
-	return quantProduto * produto.getPreco();
+    public BigDecimal calcularPreco() {
+        return this.produto.getPreco().multiply(new BigDecimal(this.quantProduto));
     }
 
     @Override
     public int hashCode() {
-	int hash = 3;
-	hash = 71 * hash + this.id;
-	return hash;
+        int hash = 3;
+        hash = 71 * hash + this.id;
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj) {
-	    return true;
-	}
-	if (obj == null) {
-	    return false;
-	}
-	if (getClass() != obj.getClass()) {
-	    return false;
-	}
-	final ItemPedido other = (ItemPedido) obj;
-	if (this.id != other.id) {
-	    return false;
-	}
-	return true;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemPedido other = (ItemPedido) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	return "ItemPedido{" + "id=" + id + ", quantProduto=" + quantProduto + ", produto=" + produto + ", pedido=" + pedido + '}';
+        return "ItemPedido{" + "id=" + id + ", quantProduto=" + quantProduto + ", produto=" + produto + ", pedido=" + pedido + '}';
     }
 
 }

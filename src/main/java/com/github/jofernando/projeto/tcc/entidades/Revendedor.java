@@ -7,8 +7,9 @@ package com.github.jofernando.projeto.tcc.entidades;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,31 +17,23 @@ import javax.persistence.Id;
  * @author Jose Junio
  */
 @Entity
-public class Revendedor implements Serializable {
+public class Revendedor extends Usuario implements Serializable {
 
-    @Id
-    private int id;
-    private String nome;
     private String cpf;
-    private String username;
-    private String password;
+    @OneToMany
+    private Set<Cliente> clientes;
+    @OneToMany
+    private Set<Pedido> pedidos;
+    @OneToMany
+    private Set<Produto> produtos;
 
     public Revendedor() {
+
     }
 
-    public Revendedor(String nome, String cpf, String username, String password) {
-        this.nome = nome;
+    public Revendedor(String cpf, String username, String password, String nome) {
+        super(username, password, nome);
         this.cpf = cpf;
-        this.username = username;
-        this.password = password;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCpf() {
@@ -51,31 +44,26 @@ public class Revendedor implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getUsername() {
-        return username;
+    public Set<Cliente> getClientes() {
+        return clientes;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setClientes(Set<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
-    public String getPassword() {
-        return password;
+    public Set<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getId() {
-        return id;
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + Objects.hashCode(this.cpf);
+        hash = 47 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -91,9 +79,6 @@ public class Revendedor implements Serializable {
             return false;
         }
         final Revendedor other = (Revendedor) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
@@ -102,7 +87,7 @@ public class Revendedor implements Serializable {
 
     @Override
     public String toString() {
-        return "Revendedor{" + "nome=" + nome + ", cpf=" + cpf + ", username=" + username + '}';
+        return "Revendedor{" + ", cpf=" + cpf + '}';
     }
 
 }
