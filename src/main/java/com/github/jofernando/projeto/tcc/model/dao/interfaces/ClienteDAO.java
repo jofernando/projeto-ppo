@@ -11,7 +11,7 @@ import com.github.jofernando.projeto.tcc.model.entidades.Cliente;
  *
  * @author Jose Junio
  */
-public interface ClienteDAO {
+public interface ClienteDAO extends DAO<Cliente> {
 
     Cliente buscarPorCpf(String cpf);
 
