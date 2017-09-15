@@ -15,10 +15,17 @@
     </properties>
 
     <dependencies>
+	<!-- Hibernate EntityManager -->
 	<dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-entitymanager</artifactId>
-	    <version>4.3.1.Final</version>
+	    <version>5.2.10.Final</version>
+	</dependency>
+	<!-- Driver JDBC do MySQL -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.6</version>
 	</dependency>
 	<dependency>
 	    <groupId>javax</groupId>
