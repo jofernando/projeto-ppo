@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
  */
 public class JpaUtil {
 
-    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("UnidadeDePèrsistencia");
+    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("UnidadeDePersistencia");
 
     private JpaUtil() {
     }
