@@ -9,6 +9,7 @@
         <title>Simulador</title>
     </h:head>
     <h:body>
+	<p:growl life="4000" autoUpdate="true" showDetail="true" showSummary="false"/>
         <center>
             <p:panelGrid columns="2">
                 <h:graphicImage  library="resources" name="logo.jpe" width="100px"></h:graphicImage>
@@ -17,7 +18,6 @@
         </center>
         <p:fieldset legend="Formulário de Cadastro">
             <h:form >
-                <p:growl id="growl" life="4000" showDetail="true" showSummary="false"/>
                 <p:separator/>
                 <p:panelGrid columns="2" id="coluna">
                     <h:outputLabel for='nome' value="Nome:"></h:outputLabel>
@@ -26,13 +26,13 @@
                         <f:validateRegex  pattern="^[a-zA-ZáàâãéèêíïóòôõöúçñÁÀÂÃÉÈÊÍÏÓÒÔÕÖÚÇÑ ]+$" />
                     </h:inputText>
                     <h:outputLabel for='cpf' value="CPF:"></h:outputLabel>
-                    <p:inputMask placeholder="CPF" id= 'cpf' mask='999.999.999-99' value="#{revendedorController.revendedor.cpf}"
+                    <p:inputMask placeholder="Obrigátorio" id= 'cpf' mask='999.999.999-99' value="#{revendedorController.revendedor.cpf}"
                                  required="true" requiredMessage="CPF: Campo obrigatório">
                     </p:inputMask>
-                    <h:outputLabel for="login" value="Login"></h:outputLabel>
+                    <h:outputLabel for="login" value="Login:"></h:outputLabel>
                     <h:inputText id="login" value="#{revendedorController.revendedor.username}"
                                  required="true" requiredMessage="Login: Campo obrigatório"></h:inputText>
-                    <h:outputLabel for="senha" value="Senha"></h:outputLabel>
+                    <h:outputLabel for="senha" value="Senha:"></h:outputLabel>
                     <h:inputSecret id="senha" value="#{revendedorController.revendedor.password}"
                                    required="true" requiredMessage="Senha: Campo obrigatório"></h:inputSecret>
                 </p:panelGrid>
