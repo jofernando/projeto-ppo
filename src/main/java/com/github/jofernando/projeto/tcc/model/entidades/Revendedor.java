@@ -60,6 +60,14 @@ public class Revendedor extends Usuario implements Serializable {
         this.pedidos = pedidos;
     }
 
+    public Set<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;

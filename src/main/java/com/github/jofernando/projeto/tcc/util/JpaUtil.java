@@ -17,14 +17,16 @@ public class JpaUtil {
 
     private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("UnidadeDePersistencia");
 
-    private JpaUtil() {
+    /*
+    static {
+        FACTORY = Persistence.createEntityManagerFactory("UnidadeDePersistencia");
     }
-
+     */
     public static EntityManager getEntityManager() {
-	return FACTORY.createEntityManager();
+        return FACTORY.createEntityManager();
     }
 
     public static void close() {
-	FACTORY.close();
+        FACTORY.close();
     }
 }

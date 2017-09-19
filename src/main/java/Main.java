@@ -1,5 +1,6 @@
 
-import javax.persistence.Persistence;
+import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosClienteDAO;
+import com.github.jofernando.projeto.tcc.model.entidades.Cliente;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +14,18 @@ import javax.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-	Persistence.createEntityManagerFactory("UnidadeDePersistencia");
+        // Persistence.createEntityManagerFactory("UnidadeDePersistencia");
+
+        // Cliente cliTeste = new Cliente("Junio", "email", "telefone", "endereco", "cpf");
+        BancoDeDadosClienteDAO persiste = new BancoDeDadosClienteDAO();
+
+        //   persiste.inserir(cliTeste);
+        Cliente novoCli = persiste.buscar(1);
+        System.out.println("CPF: " + persiste.buscar(1).getCpf());
+        novoCli.setCpf("095");
+        persiste.alterar(novoCli);
+        System.out.println("CPF: " + persiste.buscar(1).getCpf());
+
     }
+
 }
