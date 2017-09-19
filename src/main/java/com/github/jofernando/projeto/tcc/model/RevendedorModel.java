@@ -23,89 +23,66 @@ public class RevendedorModel {
     public static final int BANCODADOS = 1;
 
     public RevendedorModel(int tipo) {
-        if (tipo == 1) {
-            model = new BancoDeDadosRevendedorDAO();
-        }
+	if (tipo == 1) {
+	    model = new BancoDeDadosRevendedorDAO();
+	}
     }
 
     public void inserir(Revendedor t) {
-        try {
-            if (t == null) {
-                throw new Exception("Revendedor não pode ser nulo");
-            } else if (t.getUsername().isEmpty()) {
-                throw new Exception("Nome do Revendedor não pode ser nulo");
-            } else if (t.getPassword().isEmpty()) {
-                throw new Exception("Senha não pode ser nulo");
-            } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-                throw new Exception("Usuário com esse nome já cadastrado");
-            }
-            t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
-            model.inserir(t);
-        } catch (Exception ex) {
-        }
+	if (t == null) {
+	    throw new IllegalArgumentException("Revendedor não pode ser nulo");
+	} else if (t.getUsername().isEmpty()) {
+	    throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+	} else if (t.getPassword().isEmpty()) {
+	    throw new IllegalArgumentException("Senha não pode ser nulo");
+	} else if (((RevendedorDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+	}
+	t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
+	model.inserir(t);
 
     }
 
     public void alterar(Revendedor t) {
-        try {
-            if (t == null) {
-                throw new Exception("Revendedor não pode ser nulo");
-            } else if (t.getUsername().isEmpty()) {
-                throw new Exception("Nome do Revendedor não pode ser nulo");
-            } else if (t.getPassword().isEmpty()) {
-                throw new Exception("Senha não pode ser nula");
-            } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-                throw new Exception("Usuário com esse nome já cadastrado");
-            }
-            t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
-            model.alterar(t);
-        } catch (Exception ex) {
-        }
+	if (t == null) {
+	    throw new IllegalArgumentException("Revendedor não pode ser nulo");
+	} else if (t.getUsername().isEmpty()) {
+	    throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+	} else if (t.getPassword().isEmpty()) {
+	    throw new IllegalArgumentException("Senha não pode ser nula");
+	} else if (((RevendedorDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+	}
+	t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
+	model.alterar(t);
     }
 
     public void deletar(Revendedor t) {
-        try {
-            if (t == null) {
-                throw new Exception("Selecione algum Revendedor para excluir");
-            }
-            model.deletar(t);
-        } catch (Exception ex) {
-        }
+	if (t == null) {
+	    throw new IllegalArgumentException("Selecione algum Revendedor para excluir");
+	}
+	model.deletar(t);
     }
 
     public Revendedor buscar(int id) {
-        try {
-            return model.buscar(id);
-        } catch (Exception ex) {
-            return null;
-        }
+	return model.buscar(id);
     }
 
     public List<Revendedor> buscarTodos() {
-        try {
-            return model.buscarTodos();
-        } catch (Exception ex) {
-            return null;
-        }
+	return model.buscarTodos();
     }
 
     public void login(String username, String password) {
-        try {
-            password = CriptografiaUtil.criptografar(password);
-            Revendedor revendedor = ((RevendedorDAO) model).login(username, password);
-            if (revendedor != null) {
-                SessionUtil.setAttribute("RevendedorLogado", revendedor);
-            } else {
-                throw new Exception("Usuario e/ou senha inválidos");
-            }
-        } catch (Exception ex) {
-        }
+	password = CriptografiaUtil.criptografar(password);
+	Revendedor revendedor = ((RevendedorDAO) model).login(username, password);
+	if (revendedor != null) {
+	    SessionUtil.setAttribute("RevendedorLogado", revendedor);
+	} else {
+	    throw new IllegalArgumentException("Usuario e/ou senha inválidos");
+	}
     }
 
     public void logout() {
-        try {
-            SessionUtil.invalidate();
-        } catch (Exception ex) {
-        }
+	SessionUtil.invalidate();
     }
 }

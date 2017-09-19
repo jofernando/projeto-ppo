@@ -10,8 +10,6 @@ import com.github.jofernando.projeto.tcc.model.dao.interfaces.ClienteDAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.DAO;
 import com.github.jofernando.projeto.tcc.model.entidades.Cliente;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -29,72 +27,44 @@ public class ClienteModel {
     }
 
     public void inserir(Cliente t) {
-	try {
-	    if (t.getCpf().isEmpty()) {
-		throw new Exception("CPF não pode ser nulo");
-	    } else if (t == null) {
-		throw new Exception("Cliente não pode ser nulo");
-	    } else if (((ClienteDAO) model).estaCadastrado(t)) {
-		throw new Exception("Cliente com esse CPF já cadastrado");
-	    }
-	    model.inserir(t);
-	} catch (Exception ex) {
-	    //Substituir como lançar a execessão
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
+	if (t.getCpf().isEmpty()) {
+	    throw new IllegalArgumentException("CPF não pode ser nulo");
+	} else if (t == null) {
+	    throw new IllegalArgumentException("Cliente não pode ser nulo");
+	} else if (((ClienteDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Cliente com esse CPF já cadastrado");
 	}
+	model.inserir(t);
 
     }
 
     public void alterar(Cliente t) {
-	try {
-	    if (t == null) {
-		throw new Exception("Cliente não pode ser nulo");
-	    } else if (t.getCpf().isEmpty()) {
-		throw new Exception("CPF não pode ser nulo");
-	    } else if (((ClienteDAO) model).estaCadastrado(t)) {
-		throw new Exception("Cliente com esse CPF já cadastrado");
-	    }
-	    model.alterar(t);
-	} catch (Exception ex) {
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
+	if (t == null) {
+	    throw new IllegalArgumentException("Cliente não pode ser nulo");
+	} else if (t.getCpf().isEmpty()) {
+	    throw new IllegalArgumentException("CPF não pode ser nulo");
+	} else if (((ClienteDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Cliente com esse CPF já cadastrado");
 	}
+	model.alterar(t);
     }
 
     public void deletar(Cliente t) {
-	try {
-	    if (t == null) {
-		throw new Exception("Selecione algum cliente para excluir");
-	    }
-	    model.deletar(t);
-	} catch (Exception ex) {
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
+	if (t == null) {
+	    throw new IllegalArgumentException("Selecione algum cliente para excluir");
 	}
+	model.deletar(t);
     }
 
     public Cliente buscar(int id) {
-	try {
-	    return model.buscar(id);
-	} catch (Exception ex) {
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
-	    return null;
-	}
+	return model.buscar(id);
     }
 
     public List<Cliente> buscarTodos() {
-	try {
-	    return model.buscarTodos();
-	} catch (Exception ex) {
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
-	    return null;
-	}
+	return model.buscarTodos();
     }
 
     public Cliente buscarPorCpf(String cpf) {
-	try {
-	    return ((ClienteDAO) model).buscarPorCpf(cpf);
-	} catch (Exception ex) {
-	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! " + ex.getMessage(), null));
-	    return null;
-	}
+	return ((ClienteDAO) model).buscarPorCpf(cpf);
     }
 }
