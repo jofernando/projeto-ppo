@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Simulador</title>
     </h:head>
@@ -20,21 +19,20 @@
             <h:form >
                 <p:separator/>
                 <p:panelGrid columns="2" id="coluna">
-                    <h:outputLabel for='nome' value="Nome:"></h:outputLabel>
-                    <h:inputText validatorMessage="Formato do nome incorreto" id="nome"  value="#{revendedorController.revendedor.nome}" required="true"
+                    <h:outputLabel for='nome' value="Nome:"/>
+                    <p:inputText placeholder="Obrigátorio" validatorMessage="Formato do nome incorreto" id="nome"  value="#{revendedorController.revendedor.nome}" required="true"
                                  requiredMessage="Nome: Campo obrigatório">
                         <f:validateRegex  pattern="^[a-zA-ZáàâãéèêíïóòôõöúçñÁÀÂÃÉÈÊÍÏÓÒÔÕÖÚÇÑ ]+$" />
-                    </h:inputText>
-                    <h:outputLabel for='cpf' value="CPF:"></h:outputLabel>
+                    </p:inputText>
+                    <h:outputLabel for='cpf' value="CPF:"/>
                     <p:inputMask placeholder="Obrigátorio" id= 'cpf' mask='999.999.999-99' value="#{revendedorController.revendedor.cpf}"
-                                 required="true" requiredMessage="CPF: Campo obrigatório">
-                    </p:inputMask>
-                    <h:outputLabel for="login" value="Login:"></h:outputLabel>
-                    <h:inputText id="login" value="#{revendedorController.revendedor.username}"
-                                 required="true" requiredMessage="Login: Campo obrigatório"></h:inputText>
-                    <h:outputLabel for="senha" value="Senha:"></h:outputLabel>
-                    <h:inputSecret id="senha" value="#{revendedorController.revendedor.password}"
-                                   required="true" requiredMessage="Senha: Campo obrigatório"></h:inputSecret>
+                                 required="true" requiredMessage="CPF: Campo obrigatório"/>
+                    <h:outputLabel for="login" value="Login:"/>
+                    <p:inputText placeholder="Obrigátorio" id="login" value="#{revendedorController.revendedor.username}"
+                                 required="true" requiredMessage="Login: Campo obrigatório"/>
+                    <h:outputLabel for="senha" value="Senha:"/>
+                    <p:password placeholder="Obrigátorio" id="senha" value="#{revendedorController.revendedor.password}"
+				required="true" requiredMessage="Senha: Campo obrigatório"/>
                 </p:panelGrid>
                 <p:commandButton id="com" value="Salvar" icon="ui-icon-disk" action="#{revendedorController.inserirAction()}"
                                  update="@form" ></p:commandButton>
