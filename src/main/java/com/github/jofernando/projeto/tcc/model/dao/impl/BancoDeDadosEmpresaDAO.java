@@ -5,28 +5,28 @@
  */
 package com.github.jofernando.projeto.tcc.model.dao.impl;
 
-import com.github.jofernando.projeto.tcc.model.dao.interfaces.RevendedorDAO;
-import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
+import com.github.jofernando.projeto.tcc.model.dao.interfaces.EmpresaDAO;
+import com.github.jofernando.projeto.tcc.model.entidades.Empresa;
 import com.github.jofernando.projeto.tcc.util.JpaUtil;
 import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author Fernando
+ * @author Jose Junio
  */
-public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
+public class BancoDeDadosEmpresaDAO implements EmpresaDAO {
 
     @Override
-    public Revendedor login(String username, String password) {
+    public Empresa login(String username, String password) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
-            return (Revendedor) manager.createQuery("from Revendedor u where u.username = :username"
+            return (Empresa) manager.createQuery("from Empresa u where u.username = :username"
                     + " and u.password = :password")
                     .setParameter("username", username)
                     .setParameter("password", password)
                     .getSingleResult();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return null;
         } finally {
             manager.close();
@@ -34,16 +34,16 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public boolean estaCadastrado(Revendedor t) {
+    public boolean estaCadastrado(Empresa t) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
-            List<Revendedor> revendedores = manager.createQuery("from Revendedor u where u.username = :username")
+            List<Empresa> empresas = manager.createQuery("from Empresa u where u.username = :username")
                     .setParameter("username", t.getUsername())
                     .getResultList();
-            if (t.getId() != 0 && revendedores.size() == 1 && revendedores.get(0).getId() == (t.getId())) {
+            if (t.getId() != 0 && empresas.size() == 1 && empresas.get(0).getId() == (t.getId())) {
                 return false;
             }
-            return !revendedores.isEmpty();
+            return !empresas.isEmpty();
         } catch (Exception e) {
             return false;
         } finally {
@@ -52,7 +52,7 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public void inserir(Revendedor t) {
+    public void inserir(Empresa t) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
             manager.getTransaction().begin();
@@ -65,7 +65,7 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public void alterar(Revendedor t) {
+    public void alterar(Empresa t) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
             manager.getTransaction().begin();
@@ -78,7 +78,7 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public void deletar(Revendedor t) {
+    public void deletar(Empresa t) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
             manager.getTransaction().begin();
@@ -91,10 +91,10 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public Revendedor buscar(int id) {
+    public Empresa buscar(int id) {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
-            return (Revendedor) manager.find(Revendedor.class, id);
+            return (Empresa) manager.find(Empresa.class, id);
         } catch (Exception e) {
             return null;
         } finally {
@@ -103,10 +103,10 @@ public class BancoDeDadosRevendedorDAO implements RevendedorDAO {
     }
 
     @Override
-    public List<Revendedor> buscarTodos() {
+    public List<Empresa> buscarTodos() {
         EntityManager manager = JpaUtil.getEntityManager();
         try {
-            return manager.createQuery("from Revendedor u").getResultList();
+            return manager.createQuery("from Empresa u").getResultList();
         } catch (Exception e) {
             return null;
         } finally {

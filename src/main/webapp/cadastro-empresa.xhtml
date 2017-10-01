@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciador de Vendas</title>
+    </h:head>
+    <h:body>
+        <center>
+            <p:panelGrid columns="2">
+                <h:graphicImage  value="resources/imagens/logoTCC.png" width="100px"></h:graphicImage>
+                <h1>Gerenciador de Vendas</h1>
+            </p:panelGrid>
+        </center>
+        <p:fieldset legend="Cadastro de Empresa">
+            <h:form >
+                <p:growl id="growl" life="4000" showDetail="true" showSummary="false"/>
+                <p:separator/>
+                <p:panelGrid columns="2" id="coluna">
+                    <h:outputLabel for='nome' value="Nome Fantasia:"></h:outputLabel>
+                    <h:inputText validatorMessage="Formato do nome incorreto" id="nome"  value="#{empresaController.empresa.nomeFantasia}" required="true"
+                                 requiredMessage="Nome Fantasia: Campo obrigatório">
+                        <f:validateRegex  pattern="^[a-zA-ZáàâãéèêíïóòôõöúçñÁÀÂÃÉÈÊÍÏÓÒÔÕÖÚÇÑ ]+$" />
+                    </h:inputText>
+                    <h:outputLabel for='razao' value="Razão Social:"></h:outputLabel>
+                    <h:inputText validatorMessage="Formato incorreto" id="razao"  value="#{empresaController.empresa.razaoSocial}" required="true"
+                                 requiredMessage="Razão Social: Campo obrigatório">
+                        <f:validateRegex  pattern="^[a-zA-ZáàâãéèêíïóòôõöúçñÁÀÂÃÉÈÊÍÏÓÒÔÕÖÚÇÑ ]+$" />
+                    </h:inputText>
+                    <h:outputLabel for='cpf' value="CNPJ:"></h:outputLabel>
+                    <p:inputMask placeholder="CNPJ" id= 'cpf' mask='99.999.999/9999-99' value="#{empresaController.empresa.cnpj}"
+                                 required="true" requiredMessage="CNPF: Campo obrigatório">
+                    </p:inputMask>
+                    <h:outputLabel for="login" value="Login"></h:outputLabel>
+                    <h:inputText id="login" value="#{empresaController.empresa.username}"
+                                 required="true" requiredMessage="Login: Campo obrigatório"></h:inputText>
+                    <h:outputLabel for="senha" value="Senha"></h:outputLabel>
+                    <h:inputSecret id="senha" value="#{empresaController.empresa.password}"
+                                   required="true" requiredMessage="Senha: Campo obrigatório"></h:inputSecret>
+                </p:panelGrid>
+                <p:commandButton id="salvar" value="Salvar" icon="ui-icon-disk" action="#{empresaController.inserirAction()}"
+                                 update="@form" ></p:commandButton>
+                <p:button id="home" value="Home" icon="ui-icon-disk" href="index.xhtml" ></p:button>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>
+

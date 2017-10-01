@@ -1,6 +1,7 @@
 
 import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosClienteDAO;
-import com.github.jofernando.projeto.tcc.model.entidades.Cliente;
+import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
+import com.github.jofernando.projeto.tcc.model2.RevendedorModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,11 +21,11 @@ public class Main {
         BancoDeDadosClienteDAO persiste = new BancoDeDadosClienteDAO();
 
         //   persiste.inserir(cliTeste);
-        Cliente novoCli = persiste.buscar(1);
-        System.out.println("CPF: " + persiste.buscar(1).getCpf());
-        novoCli.setCpf("095");
-        persiste.alterar(novoCli);
-        System.out.println("CPF: " + persiste.buscar(1).getCpf());
+        RevendedorModel model = new RevendedorModel(1);
+        Revendedor revendedor = new Revendedor();
+        revendedor.setPassword("12345");
+        revendedor.setUsername("jrjr");
+        model.inserir(revendedor);
 
     }
 

@@ -5,9 +5,9 @@
  */
 package com.github.jofernando.projeto.tcc.controller;
 
-import com.github.jofernando.projeto.tcc.model.PedidoModel;
 import com.github.jofernando.projeto.tcc.model.entidades.Pedido;
 import com.github.jofernando.projeto.tcc.model.entidades.Produto;
+import com.github.jofernando.projeto.tcc.model2.PedidoModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,53 +25,53 @@ public class PedidoController {
     private List<Produto> produtos;
 
     public PedidoController() {
-	model = new PedidoModel(PedidoModel.BANCODADOS);
-	pedido = new Pedido();
+        model = new PedidoModel(PedidoModel.BANCODADOS);
+        pedido = new Pedido();
     }
 
     public void inserirAction() {
-	model.inserir(pedido);
+        model.inserir(pedido);
     }
 
     public void alterarAction() {
-	model.alterar(pedido);
+        model.alterar(pedido);
     }
 
     public void deletarAction() {
-	model.deletar(pedido);
+        model.deletar(pedido);
     }
 
     public void deletarAction(Pedido pedido) {
-	model.deletar(pedido);
+        model.deletar(pedido);
     }
 
     public Pedido buscarAction(int id) {
-	return model.buscar(id);
+        return model.buscar(id);
     }
 
     public List<Pedido> buscarTodosAction() {
-	return model.buscarTodos();
+        return model.buscarTodos();
     }
 
     public Pedido getPedido() {
-	return pedido;
+        return pedido;
     }
 
     public void setPedido(Pedido pedido) {
-	this.pedido = pedido;
+        this.pedido = pedido;
     }
 
     public List<Produto> getProdutos() {
-	return produtos;
+        return produtos;
     }
 
     public void setProdutos(List<Produto> produtos) {
-	this.produtos = produtos;
+        this.produtos = produtos;
     }
 
     public void limpar() {
-	pedido = new Pedido();
-	produtos = null;
+        pedido = new Pedido();
+        produtos = null;
     }
 
 }

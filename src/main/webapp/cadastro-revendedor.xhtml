@@ -5,17 +5,18 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Simulador</title>
+        <title>Gerenciador de Vendas</title>
     </h:head>
     <h:body>
-	<p:growl life="4000" autoUpdate="true" showDetail="true" showSummary="false"/>
+        <p:growl life="4000" autoUpdate="true" showDetail="true" showSummary="false"/>
         <center>
             <p:panelGrid columns="2">
-                <h:graphicImage  library="resources" name="logo.jpe" width="100px"></h:graphicImage>
+                <h:graphicImage  value="resources/imagens/logoTCC.png" width="100px"></h:graphicImage>
                 <h1>Gerenciador de Vendas</h1>
             </p:panelGrid>
         </center>
-        <p:fieldset legend="Formulário de Cadastro">
+
+        <p:fieldset legend="Cadastro de Revendedor">
             <h:form >
                 <p:separator/>
                 <p:panelGrid columns="2" id="coluna">
@@ -32,10 +33,11 @@
                                  required="true" requiredMessage="Login: Campo obrigatório"/>
                     <h:outputLabel for="senha" value="Senha:"/>
                     <p:password placeholder="Obrigátorio" id="senha" value="#{revendedorController.revendedor.password}"
-				required="true" requiredMessage="Senha: Campo obrigatório"/>
+                                required="true" requiredMessage="Senha: Campo obrigatório"/>
                 </p:panelGrid>
-                <p:commandButton id="com" value="Salvar" icon="ui-icon-disk" action="#{revendedorController.inserirAction()}"
+                <p:commandButton id="salvar" value="Salvar" icon="ui-icon-disk" action="#{revendedorController.inserirAction()}"
                                  update="@form" ></p:commandButton>
+                <p:button id="home" value="Home" icon="ui-icon-disk" href="index.xhtml" ></p:button>
             </h:form>
         </p:fieldset>
     </h:body>

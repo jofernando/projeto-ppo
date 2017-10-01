@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.jofernando.projeto.tcc.model;
+package com.github.jofernando.projeto.tcc.model2;
 
 import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosPedidoDAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.DAO;

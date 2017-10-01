@@ -5,9 +5,9 @@
  */
 package com.github.jofernando.projeto.tcc.controller;
 
-import com.github.jofernando.projeto.tcc.model.RevendedorModel;
 import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
 import com.github.jofernando.projeto.tcc.model.entidades.Usuario;
+import com.github.jofernando.projeto.tcc.model2.RevendedorModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,48 +24,48 @@ public class RevendedorController {
     private Revendedor revendedor = null;
 
     public RevendedorController() {
-	model = new RevendedorModel(RevendedorModel.BANCODADOS);
-	revendedor = new Revendedor();
+        model = new RevendedorModel(RevendedorModel.BANCODADOS);
+        revendedor = new Revendedor();
     }
 
     public void inserirAction() {
-	model.inserir(revendedor);
+        model.inserir(revendedor);
     }
 
     public void alterarAction() {
-	model.alterar(revendedor);
+        model.alterar(revendedor);
     }
 
     public void deletarAction() {
-	model.deletar(revendedor);
+        model.deletar(revendedor);
     }
 
     public Usuario buscarAction(int id) {
-	return model.buscar(id);
+        return model.buscar(id);
     }
 
     public List<Revendedor> buscarTodosAction() {
-	return model.buscarTodos();
+        return model.buscarTodos();
     }
 
     public void loginAction() {
-	model.login(revendedor.getUsername(), revendedor.getPassword());
+        model.login(revendedor.getUsername(), revendedor.getPassword());
     }
 
     public void logoutAction() {
-	model.logout();
+        model.logout();
     }
 
     public Usuario getRevendedor() {
-	return revendedor;
+        return revendedor;
     }
 
     public void setRevendedor(Revendedor revendedor) {
-	this.revendedor = revendedor;
+        this.revendedor = revendedor;
     }
 
     public void limpar() {
-	revendedor = new Revendedor();
+        revendedor = new Revendedor();
     }
 
 }
