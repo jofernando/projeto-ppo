@@ -9,6 +9,7 @@ import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosEmpresaDAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.DAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.EmpresaDAO;
 import com.github.jofernando.projeto.tcc.model.entidades.Empresa;
+import com.github.jofernando.projeto.tcc.model.entidades.Usuario;
 import com.github.jofernando.projeto.tcc.util.CriptografiaUtil;
 import com.github.jofernando.projeto.tcc.util.SessionUtil;
 import java.util.List;
@@ -93,9 +94,9 @@ public class EmpresaModel {
     public void login(String username, String password) {
         try {
             password = CriptografiaUtil.criptografar(password);
-            Empresa empresa = (Empresa) ((EmpresaDAO) model).login(username, password);
+            Usuario empresa = (Usuario) ((EmpresaDAO) model).login(username, password);
             if (empresa != null) {
-                SessionUtil.setAttribute("EmpresaLogada", empresa);
+                SessionUtil.setAttribute("UsuarioLogado", empresa);
             } else {
                 throw new Exception("Usuario e/ou senha inválidos");
             }
