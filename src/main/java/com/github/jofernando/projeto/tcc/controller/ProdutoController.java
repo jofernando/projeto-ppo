@@ -6,7 +6,7 @@
 package com.github.jofernando.projeto.tcc.controller;
 
 import com.github.jofernando.projeto.tcc.model.entidades.Produto;
-import com.github.jofernando.projeto.tcc.model2.ProdutoModel;
+import com.github.jofernando.projeto.tcc.model.ProdutoModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

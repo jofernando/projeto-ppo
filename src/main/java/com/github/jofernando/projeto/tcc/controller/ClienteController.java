@@ -5,8 +5,8 @@
  */
 package com.github.jofernando.projeto.tcc.controller;
 
+import com.github.jofernando.projeto.tcc.model.ClienteModel;
 import com.github.jofernando.projeto.tcc.model.entidades.Cliente;
-import com.github.jofernando.projeto.tcc.model2.ClienteModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

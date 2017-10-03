@@ -6,7 +6,6 @@
 package com.github.jofernando.projeto.tcc.model;
 
 import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
-import com.github.jofernando.projeto.tcc.model2.RevendedorModel;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -33,4 +32,27 @@ public class TesteCadastroRevendedor {
 
     }
 
+    /*@Test
+    public void deveTerPasswordNaoNulo() {
+
+        RevendedorModel model = new RevendedorModel(RevendedorModel.BANCODADOS);
+        excecao.expect(NullPointerException.class);
+        excecao.expectMessage("Senha não pode ser nulo");
+        Revendedor revendedor = new Revendedor();
+        revendedor.setUsername("revendedor");
+        model.inserir(revendedor);
+
+    }
+
+    @Test
+    public void deveTerUsernameNaoNulo() {
+
+        RevendedorModel model = new RevendedorModel(RevendedorModel.BANCODADOS);
+        excecao.expect(NullPointerException.class);
+        excecao.expectMessage("Nome do Revendedor não pode ser nulo");
+        Revendedor revendedor = new Revendedor();
+        revendedor.setPassword("senha");
+        model.inserir(revendedor);
+
+    }*/
 }

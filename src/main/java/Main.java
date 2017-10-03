@@ -1,7 +1,6 @@
 
 import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosClienteDAO;
 import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
-import com.github.jofernando.projeto.tcc.model2.RevendedorModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,12 +19,15 @@ public class Main {
         // Cliente cliTeste = new Cliente("Junio", "email", "telefone", "endereco", "cpf");
         BancoDeDadosClienteDAO persiste = new BancoDeDadosClienteDAO();
 
-        //   persiste.inserir(cliTeste);
-        RevendedorModel model = new RevendedorModel(1);
-        Revendedor revendedor = new Revendedor();
-        revendedor.setPassword("12345");
-        revendedor.setUsername("jrjr");
-        model.inserir(revendedor);
+        Revendedor revend = new Revendedor();
+
+        if (revend.getPassword().isEmpty()) {
+            System.out.println(" Senha NULO");
+            throw new NullPointerException("lll");
+
+        } else {
+            System.out.println("Não nulo");
+        }
 
     }
 

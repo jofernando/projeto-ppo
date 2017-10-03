@@ -7,7 +7,7 @@ package com.github.jofernando.projeto.tcc.controller;
 
 import com.github.jofernando.projeto.tcc.model.entidades.Empresa;
 import com.github.jofernando.projeto.tcc.model.entidades.Usuario;
-import com.github.jofernando.projeto.tcc.model2.EmpresaModel;
+import com.github.jofernando.projeto.tcc.model.EmpresaModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
