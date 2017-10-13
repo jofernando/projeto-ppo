@@ -6,25 +6,21 @@
     template="index.xhtml"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Gerenciador de Vendas - Login</title>
+        <title>Gerenciador de Vendas</title>
     </h:head>
     <h:body>
-
-        <center>
-            <h:form style="float: inside; width: auto; padding: auto">
-                <p:growl id="growl" life="4000" showDetail="true" autoUpdate="true" showSummary="false"/>  <br></br>
-                <p:panelGrid columns="2"  >
-                    <h:outputLabel for="login" value="Login"></h:outputLabel>
-                    <h:inputText id="login" value="#{empresaController.empresa.username}" required="true" requiredMessage="O login é Obrigatório."></h:inputText>
-                    <h:outputLabel for="senha2" value="Senha:" />
-                    <h:inputSecret id="senha2" value="#{empresaController.empresa.password}" label="Senha" required="true" requiredMessage="A senha é Obrigatória."/>
-
-                    <p:commandButton  update="@form" value="Efetuar Login"
-                                      action="#{empresaController.loginAction()}"></p:commandButton>
-                    <p:button value="Cadastre-se" href="empresa/cadastro-empresa.xhtml?faces-redirect=true"></p:button>
-                </p:panelGrid>
-            </h:form>
-        </center>
+	<br/>
+	<p:growl id="growl" showDetail="true" autoUpdate="true" showSummary="false"/>
+	<h:form >
+	    <p:panelGrid columns="2">
+		<p:outputLabel for="login" value="Username"/>
+		<p:inputText id="login" value="#{empresaController.empresa.username}" required="true" requiredMessage="O Username é Obrigatório."/>
+		<p:outputLabel for="senha" value="Senha"/>
+		<p:password id="senha" value="#{empresaController.empresa.password}" required="true" requiredMessage="A senha é Obrigatória."/>
+		<p:commandButton value="Efetuar Login" action="#{empresaController.loginAction()}"/>
+		<p:button value="Cadastre-se" href="cadastro-empresa.xhtml"/>
+	    </p:panelGrid>
+	</h:form>
     </h:body>
 </html>
 

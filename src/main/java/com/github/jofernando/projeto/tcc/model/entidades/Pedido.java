@@ -75,11 +75,29 @@ public class Pedido implements Serializable {
 	this.itens = itens;
     }
 
-    public void addItens(ItemPedido item) {
+    public void addItem(ItemPedido item) {
 	if (this.itens == null) {
 	    this.itens = new HashSet<>();
 	}
 	itens.add(item);
+    }
+
+    public void addItens(Set<ItemPedido> itens) {
+	if (this.itens == null) {
+	    this.itens = new HashSet<>();
+	}
+	for (ItemPedido iten : itens) {
+	    this.itens.add(iten);
+	}
+    }
+
+    public void addProdutos(Set<Produto> produtos) {
+	if (this.itens == null) {
+	    this.itens = new HashSet<>();
+	}
+	for (Object produto : produtos) {
+	    this.itens.add(new ItemPedido(0, (Produto) produto, this));
+	}
     }
 
     public BigDecimal calcularPreco() {
