@@ -5,6 +5,8 @@
  */
 package com.github.jofernando.projeto.tcc.login;
 
+import com.github.jofernando.projeto.tcc.model.entidades.Empresa;
+import com.github.jofernando.projeto.tcc.model.entidades.Usuario;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Fernando
  */
-@WebFilter(servletNames = {"Faces Servlet"})
-public class ControleDeAcesso implements Filter {
+@WebFilter("/empresa/*")
+public class ControleDeAcessoEmpresa implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,21 +32,20 @@ public class ControleDeAcesso implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        try {
-            HttpServletRequest req = (HttpServletRequest) request;
-            HttpServletResponse res = (HttpServletResponse) response;
-            HttpSession session = req.getSession();
-            if ((session.getAttribute("UsuarioLogado") != null)
-                    || (req.getRequestURI().endsWith("cadastro-empresa.xhtml"))
-                    || (req.getRequestURI().endsWith("login.xhtml"))
-                    || (req.getRequestURI().contains("javax.faces.resource/"))) {
-                chain.doFilter(request, response);
-            } else {
-                res.sendRedirect("/projeto-tcc/login.xhtml");
-            }
-        } catch (Exception ex) {
-            System.err.println(ex);
-        }
+	try {
+	    HttpServletRequest req = (HttpServletRequest) request;
+	    HttpServletResponse res = (HttpServletResponse) response;
+	    HttpSession session = req.getSession();
+	    Usuario usuario = (Usuario) session.getAttribute("UsuarioLogado");
+	    boolean value = (usuario != null && usuario instanceof Empresa) || req.getRequestURI().endsWith("cadastro-empresa.xhtml") || req.getRequestURI().endsWith("login.xhtml");
+	    if (value) {
+		chain.doFilter(request, response);
+	    } else {
+		res.sendRedirect("/projeto-tcc/acesso-negado.xhtml");
+	    }
+	} catch (IOException | ServletException ex) {
+	    System.err.println(ex);
+	}
     }
 
     @Override

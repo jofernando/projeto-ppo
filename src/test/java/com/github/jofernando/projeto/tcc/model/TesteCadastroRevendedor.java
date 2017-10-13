@@ -5,32 +5,27 @@
  */
 package com.github.jofernando.projeto.tcc.model;
 
-import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 /**
  *
  * @author Jose Junio
  */
 public class TesteCadastroRevendedor {
-
-    @Rule
-    public ExpectedException excecao = ExpectedException.none();
-
-    @Test
-    public void deveTerUsernameNaoCadastrado() {
-
-        RevendedorModel model = new RevendedorModel(RevendedorModel.BANCODADOS);
-        excecao.expect(IllegalArgumentException.class);
-        excecao.expectMessage("Usuário com esse nome já cadastrado");
-        Revendedor revendedor = new Revendedor();
-        revendedor.setPassword("12345");
-        revendedor.setUsername("jrjr");
-        model.inserir(revendedor);
-
-    }
+//
+//    @Rule
+//    public ExpectedException excecao = ExpectedException.none();
+//
+//    @Test
+//    public void deveTerUsernameNaoCadastrado() {
+//
+//        RevendedorModel model = new RevendedorModel(RevendedorModel.BANCODADOS);
+//        excecao.expect(IllegalArgumentException.class);
+//        excecao.expectMessage("Usuário com esse nome já cadastrado");
+//        Revendedor revendedor = new Revendedor();
+//        revendedor.setPassword("12345");
+//        revendedor.setUsername("jrjr");
+//        model.inserir(revendedor);
+//
+//    }
 
     /*@Test
     public void deveTerPasswordNaoNulo() {

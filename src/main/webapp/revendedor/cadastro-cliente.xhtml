@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gerenciador de Vendas</title>
+    </h:head>
+    <h:body>
+	<center>
+            <p:panelGrid columns="2">
+                <h:graphicImage  value="resources/imagens/logoTCC.png" width="100px"></h:graphicImage>
+                <h1>Gerenciador de Vendas</h1>
+            </p:panelGrid>
+        </center>
+	<p:fieldset>
+	    <p:growl id="growl" life="4000" showDetail="true" showSummary="false"/>
+	    <p:separator/>
+	    <h:form>
+		<p:panelGrid columns="2">
+		    <h:outputText value="Cpf"/>
+		    <p:inputMask placeholder="Campo obrigatório" value="#{clienteController.cliente.cpf}" mask="999.999.999-99"/>
+		    <h:outputText value="Nome"/>
+		    <p:inputText value="#{clienteController.cliente.nome}"/>
+		    <h:outputText value="Endereço"/>
+		    <p:inputText value="#{clienteController.cliente.endereco}"/>
+		    <h:outputText value="Email"/>
+		    <p:inputText value="#{clienteController.cliente.email}"/>
+		    <h:outputText value="Telefone"/>
+		    <p:inputMask value="#{clienteController.cliente.telefone}" mask="(99)99999-9999"/>
+		    <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{clienteController.inserirAction()}"/>
+		</p:panelGrid>
+	    </h:form>
+	</p:fieldset>
+    </h:body>
+</html>
+

@@ -5,17 +5,14 @@
  */
 package com.github.jofernando.projeto.tcc.model;
 
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
-
 /**
  *
  * @author Jose Junio
  */
 public class TesteCadastroEmpresa {
-
-    @Rule
-    public ExpectedException excecao = ExpectedException.none();
+//
+//    @Rule
+//    public ExpectedException excecao = ExpectedException.none();
 
     /* @Test
     public void deveTerUsernameNaoCadastrado() {

@@ -23,66 +23,66 @@ public class RevendedorModel {
     public static final int BANCODADOS = 1;
 
     public RevendedorModel(int tipo) {
-        if (tipo == 1) {
-            model = new BancoDeDadosRevendedorDAO();
-        }
+	if (tipo == 1) {
+	    model = new BancoDeDadosRevendedorDAO();
+	}
     }
 
     public void inserir(Revendedor t) {
-        if (t == null) {
-            throw new IllegalArgumentException("Revendedor não pode ser nulo");
-        } else if (t.getUsername().isEmpty()) {
-            throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
-        } else if (t.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("Senha não pode ser nulo");
-        } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-            throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
-        }
-        t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
-        model.inserir(t);
+	if (t == null) {
+	    throw new IllegalArgumentException("Revendedor não pode ser nulo");
+	} else if (t.getUsername().isEmpty()) {
+	    throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+	} else if (t.getPassword().isEmpty()) {
+	    throw new IllegalArgumentException("Senha não pode ser nulo");
+	} else if (((RevendedorDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+	}
+	t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
+	model.inserir(t);
 
     }
 
     public void alterar(Revendedor t) {
-        if (t == null) {
-            throw new IllegalArgumentException("Revendedor não pode ser nulo");
-        } else if (t.getUsername().isEmpty()) {
-            throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
-        } else if (t.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("Senha não pode ser nula");
-        } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-            throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
-        }
-        t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
-        model.alterar(t);
+	if (t == null) {
+	    throw new IllegalArgumentException("Revendedor não pode ser nulo");
+	} else if (t.getUsername().isEmpty()) {
+	    throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+	} else if (t.getPassword().isEmpty()) {
+	    throw new IllegalArgumentException("Senha não pode ser nula");
+	} else if (((RevendedorDAO) model).estaCadastrado(t)) {
+	    throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+	}
+	t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
+	model.alterar(t);
     }
 
     public void deletar(Revendedor t) {
-        if (t == null) {
-            throw new IllegalArgumentException("Selecione algum Revendedor para excluir");
-        }
-        model.deletar(t);
+	if (t == null) {
+	    throw new IllegalArgumentException("Selecione algum Revendedor para excluir");
+	}
+	model.deletar(t);
     }
 
     public Revendedor buscar(int id) {
-        return model.buscar(id);
+	return model.buscar(id);
     }
 
     public List<Revendedor> buscarTodos() {
-        return model.buscarTodos();
+	return model.buscarTodos();
     }
 
     public void login(String username, String password) {
-        password = CriptografiaUtil.criptografar(password);
-        Revendedor revendedor = ((RevendedorDAO) model).login(username, password);
-        if (revendedor != null) {
-            SessionUtil.setAttribute("RevendedorLogado", revendedor);
-        } else {
-            throw new IllegalArgumentException("Usuario e/ou senha inválidos");
-        }
+	password = CriptografiaUtil.criptografar(password);
+	Revendedor revendedor = ((RevendedorDAO) model).login(username, password);
+	if (revendedor != null) {
+	    SessionUtil.setAttribute("UsuarioLogado", revendedor);
+	} else {
+	    throw new IllegalArgumentException("Usuario e/ou senha inválidos");
+	}
     }
 
     public void logout() {
-        SessionUtil.invalidate();
+	SessionUtil.invalidate();
     }
 }
