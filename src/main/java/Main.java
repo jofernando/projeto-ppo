@@ -1,6 +1,5 @@
 
-import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosClienteDAO;
-import com.github.jofernando.projeto.tcc.model.entidades.Revendedor;
+import com.github.jofernando.projeto.tcc.model.EmpresaModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,18 +16,9 @@ public class Main {
         // Persistence.createEntityManagerFactory("UnidadeDePersistencia");
 
         // Cliente cliTeste = new Cliente("Junio", "email", "telefone", "endereco", "cpf");
-        BancoDeDadosClienteDAO persiste = new BancoDeDadosClienteDAO();
+        EmpresaModel model = new EmpresaModel(EmpresaModel.BANCODADOS);
 
-        Revendedor revend = new Revendedor();
-
-        if (revend.getPassword().isEmpty()) {
-            System.out.println(" Senha NULO");
-            throw new NullPointerException("lll");
-
-        } else {
-            System.out.println("Não nulo");
-        }
-
+        // model.inserir(new Empresa("Teste", "123", "Razão Teste", "empresa", "senha"));
     }
 
 }

@@ -5,6 +5,14 @@
  */
 package com.github.jofernando.projeto.tcc.model;
 
+import com.github.jofernando.projeto.tcc.exceptions.CPFNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.CPFVazioException;
+import com.github.jofernando.projeto.tcc.exceptions.PasswordNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.PasswordVazioException;
+import com.github.jofernando.projeto.tcc.exceptions.RevendedorNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameCadastradoException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameVazioException;
 import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosRevendedorDAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.DAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.RevendedorDAO;
@@ -29,14 +37,23 @@ public class RevendedorModel {
     }
 
     public void inserir(Revendedor t) {
+
         if (t == null) {
-            throw new IllegalArgumentException("Revendedor não pode ser nulo");
+            throw new RevendedorNuloException();
+        } else if (t.getUsername() == null) {
+            throw new UsernameNuloException();
         } else if (t.getUsername().isEmpty()) {
-            throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+            throw new UsernameVazioException();
+        } else if (t.getPassword() == null) {
+            throw new PasswordNuloException();
         } else if (t.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("Senha não pode ser nulo");
+            throw new PasswordVazioException();
+        } else if (t.getCpf() == null) {
+            throw new CPFNuloException();
+        } else if (t.getCpf().isEmpty()) {
+            throw new CPFVazioException();
         } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-            throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+            throw new UsernameCadastradoException();
         }
         t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
         model.inserir(t);
@@ -45,13 +62,17 @@ public class RevendedorModel {
 
     public void alterar(Revendedor t) {
         if (t == null) {
-            throw new IllegalArgumentException("Revendedor não pode ser nulo");
+            throw new RevendedorNuloException();
+        } else if (t.getUsername() == null) {
+            throw new UsernameNuloException();
         } else if (t.getUsername().isEmpty()) {
-            throw new IllegalArgumentException("Nome do Revendedor não pode ser nulo");
+            throw new UsernameVazioException();
+        } else if (t.getPassword() == null) {
+            throw new PasswordNuloException();
         } else if (t.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("Senha não pode ser nula");
+            throw new PasswordVazioException();
         } else if (((RevendedorDAO) model).estaCadastrado(t)) {
-            throw new IllegalArgumentException("Usuário com esse nome já cadastrado");
+            throw new UsernameCadastradoException();
         }
         t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
         model.alterar(t);

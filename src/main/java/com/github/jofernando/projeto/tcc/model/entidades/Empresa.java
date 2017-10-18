@@ -30,83 +30,83 @@ public class Empresa extends Usuario implements Serializable {
     public Empresa() {
     }
 
-    public Empresa(String nomeFantasia, String cnpj, String razaoSocial, String username, String password, String nome) {
-	super(username, password, nome);
-	this.nomeFantasia = nomeFantasia;
-	this.cnpj = cnpj;
-	this.razaoSocial = razaoSocial;
-	this.revendedores = new HashSet<>();
-	this.produtos = new HashSet<>();
+    public Empresa(String nomeFantasia, String cnpj, String razaoSocial, String username, String password) {
+        super(username, password);
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.revendedores = new HashSet<>();
+        this.produtos = new HashSet<>();
     }
 
     public String getNomeFantasia() {
-	return nomeFantasia;
+        return nomeFantasia;
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-	this.nomeFantasia = nomeFantasia;
+        this.nomeFantasia = nomeFantasia;
     }
 
     public String getCnpj() {
-	return cnpj;
+        return cnpj;
     }
 
     public void setCnpj(String cnpj) {
-	this.cnpj = cnpj;
+        this.cnpj = cnpj;
     }
 
     public String getRazaoSocial() {
-	return razaoSocial;
+        return razaoSocial;
     }
 
     public void setRazaoSocial(String razaoSocial) {
-	this.razaoSocial = razaoSocial;
+        this.razaoSocial = razaoSocial;
     }
 
     public Set<Revendedor> getRevendedores() {
-	return revendedores;
+        return revendedores;
     }
 
     public void setRevendedores(Set<Revendedor> revendedores) {
-	this.revendedores = revendedores;
+        this.revendedores = revendedores;
     }
 
     public Set<Produto> getProdutos() {
-	return produtos;
+        return produtos;
     }
 
     public void setProdutos(Set<Produto> produtos) {
-	this.produtos = produtos;
+        this.produtos = produtos;
     }
 
     @Override
     public int hashCode() {
-	int hash = 5;
-	hash = 97 * hash + Objects.hashCode(this.cnpj);
-	return hash;
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.cnpj);
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj) {
-	    return true;
-	}
-	if (obj == null) {
-	    return false;
-	}
-	if (getClass() != obj.getClass()) {
-	    return false;
-	}
-	final Empresa other = (Empresa) obj;
-	if (!Objects.equals(this.cnpj, other.cnpj)) {
-	    return false;
-	}
-	return true;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Empresa other = (Empresa) obj;
+        if (!Objects.equals(this.cnpj, other.cnpj)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	return "Empresa{" + "nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", revendedores=" + revendedores + ", produtos=" + produtos + '}';
+        return "Empresa{" + "nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", revendedores=" + revendedores + ", produtos=" + produtos + '}';
     }
 
 }

@@ -5,6 +5,14 @@
  */
 package com.github.jofernando.projeto.tcc.model;
 
+import com.github.jofernando.projeto.tcc.exceptions.CNPJNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.CNPJVazioException;
+import com.github.jofernando.projeto.tcc.exceptions.EmpresaNulaException;
+import com.github.jofernando.projeto.tcc.exceptions.PasswordNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.PasswordVazioException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameCadastradoException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameNuloException;
+import com.github.jofernando.projeto.tcc.exceptions.UsernameVazioException;
 import com.github.jofernando.projeto.tcc.model.dao.impl.BancoDeDadosEmpresaDAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.DAO;
 import com.github.jofernando.projeto.tcc.model.dao.interfaces.EmpresaDAO;
@@ -30,21 +38,26 @@ public class EmpresaModel {
     }
 
     public void inserir(Empresa t) {
-        try {
-            if (t == null) {
-                throw new IllegalArgumentException("Empresa não pode ser nula");
-            } else if (t.getUsername().isEmpty()) {
-                throw new IllegalArgumentException("Username da Empresa não pode ser vazio");
-            } else if (t.getPassword().isEmpty()) {
-                throw new IllegalArgumentException("Password da Empresa não pode ser vazio");
-            } else if (((EmpresaDAO) model).estaCadastrado(t)) {
-                //Verificar o tipo correto de exceção.
-                throw new IllegalArgumentException("Já existe Empresa com este Username cadastrado");
-            }
-            t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
-            model.inserir(t);
-        } catch (IllegalArgumentException ex) {
+
+        if (t == null) {
+            throw new EmpresaNulaException();
+        } else if (t.getUsername() == null) {
+            throw new UsernameNuloException();
+        } else if (t.getUsername().isEmpty()) {
+            throw new UsernameVazioException();
+        } else if (t.getPassword() == null) {
+            throw new PasswordNuloException();
+        } else if (t.getPassword().isEmpty()) {
+            throw new PasswordVazioException();
+        } else if (t.getCnpj() == null) {
+            throw new CNPJNuloException();
+        } else if (t.getCnpj().isEmpty()) {
+            throw new CNPJVazioException();
+        } else if (((EmpresaDAO) model).estaCadastrado(t)) {
+            throw new UsernameCadastradoException();
         }
+        t.setPassword(CriptografiaUtil.criptografar(t.getPassword()));
+        model.inserir(t);
 
     }
 
